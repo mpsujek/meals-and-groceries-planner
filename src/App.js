@@ -1,4 +1,4 @@
-import "./App.css";
+import InputFields from "./components/InputFields";
 
 function App() {
   return (
@@ -6,6 +6,7 @@ function App() {
       <header className="App-header">
         <h1>Meal and groceries planner</h1>
       </header>
+      <InputFields />
     </div>
   );
 }
