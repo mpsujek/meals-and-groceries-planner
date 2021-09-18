@@ -1,0 +1,23 @@
+.App {
+  padding-top: 20px 50px;
+  margin: 20px;
+}
+
+.app-title {
+  font-size: 30px;
+}
+
+.label {
+  display: flex;
+  flex-wrap: wrap;
+}
+.label_wrapper {
+  margin-bottom: 20px;
+}
+.label_wrapper > label {
+  margin-right: 20px;
+}
+
+.label_wrapper > label > input {
+  margin-left: 20px;
+}
