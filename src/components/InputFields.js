@@ -5,10 +5,22 @@ export default function InputFields() {
   const [meal, setMeal] = useState([]);
   const mealElementRef = useRef();
   const ingredientsRef = useRef();
+  const list = meal.map((element) => {
+    return (
+      <li key={element.id}>{`${element.name} (${element.interegients})`}</li>
+    );
+  });
 
   if (localStorage.getItem("myMeals") != null) {
+    console.log("not null");
     const mealsObject = JSON.parse(localStorage.getItem("myMeals"));
     console.log(mealsObject);
+    const mealList = mealsObject.map((element) => {
+      return (
+        <li key={element.id}>{`${element.name} (${element.interegients})`}</li>
+      );
+    });
+    list.push(mealList);
   }
 
   const addElementToList = () => {
@@ -23,12 +35,6 @@ export default function InputFields() {
     mealElementRef.current.value = null;
     ingredientsRef.current.value = null;
   };
-
-  const list = meal.map((element) => {
-    return (
-      <li key={element.id}>{`${element.name} (${element.interegients})`}</li>
-    );
-  });
 
   const shoppingList = meal.map((element) => {
     const arrayOfInteregients = element.interegients.split(",");
