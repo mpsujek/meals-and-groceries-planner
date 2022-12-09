@@ -1,11 +1,11 @@
-import React from 'react';
+// import './App.css';
 
-import './App.css';
-function App() {}
-return (
-  <div className='App'>
-    <h1>New beginning</h1>
-  </div>
-);
+function App() {
+  return (
+    <div className='App'>
+      <h1>Hello</h1>
+    </div>
+  );
+}
 
 export default App;
