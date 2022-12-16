@@ -1,4 +1,8 @@
 import { useState } from "react";
+import MealForm from "./components/MealForm";
+import MealsList from "./components/MealsList";
+import ShoppingList from "./components/ShoppingList";
+import Button from "./UI/Button";
 
 function App() {
   const [mealsList, setMealsList] = useState([]);
@@ -41,84 +45,29 @@ function App() {
     <div className='App'>
       <div className='input_form'>
         <h3>Here Input Your meal idea and ingredients</h3>
-        <form onSubmit={addMealHandler}>
-          <div>
-            <label>Meal name</label>
-            <input
-              name='meal name'
-              placeholder='Meal name'
-              type='text'
-              value={mealName}
-              onChange={handleMealNameChange}
-            />
-          </div>
-          {ingredientsFields.map((ingredient, index) => {
-            return (
-              <div key={index}>
-                <div>
-                  <label htmlFor={`ingredient-${index}`}>Ingredient</label>
-                  <input
-                    id={`ingredient-${index}`}
-                    value={ingredient.name}
-                    placeholder='Ingredient name'
-                    type='text'
-                    name='name'
-                    onChange={(event) => handleIngredientChange(index, event)}
-                  />
-                </div>
-                <div>
-                  <label htmlFor={`ingredient-${index}`}>Amount</label>
-                  <input
-                    name='amount'
-                    id={`ingredient-${index}`}
-                    value={ingredient.amount}
-                    type='number'
-                    step='0.5'
-                    onChange={(event) => handleIngredientChange(index, event)}
-                  />
-                </div>
-                <button onClick={addMoreIngrediets}>Add more</button>
-              </div>
-            );
-          })}
-
-          <button>Add meal</button>
-        </form>
+        <MealForm
+          addMealHandler={addMealHandler}
+          mealName={mealName}
+          handleMealNameChange={handleMealNameChange}
+          ingredientsFields={ingredientsFields}
+          handleIngredientChange={handleIngredientChange}
+          addMoreIngrediets={addMoreIngrediets}
+        />
       </div>
       <div className='meals_list'>
         <h3>If you already have meal added chose from list</h3>
-        <ul>
-          {mealsList.map((singleMeal) => {
-            return (
-              <li>
-                {singleMeal.name} (ingredients:{" "}
-                {singleMeal.ingredients.map((ingredient) => {
-                  return (
-                    <span>
-                      {ingredient.name} ({ingredient.amount})
-                    </span>
-                  );
-                })}
-                )
-              </li>
-            );
-          })}
-        </ul>
+        <MealsList mealsList={mealsList} />
       </div>
       <div className='shopping_list'>
         <h3>Here you have ready shopping list</h3>
-        <ul>
-          {mealsList.map((singleMeal) => {
-            return singleMeal.ingredients.map((ingredient) => {
-              return (
-                <li>
-                  {ingredient.name} ({ingredient.amount})
-                </li>
-              );
-            });
-          })}
-        </ul>
-        <button>Copy to clipboard</button>
+        <ShoppingList mealsList={mealsList} />
+        <Button
+          onClick={() => {
+            navigator.clipboard.writeText("hello");
+          }}
+        >
+          Copy to clipboard
+        </Button>
       </div>
     </div>
   );
