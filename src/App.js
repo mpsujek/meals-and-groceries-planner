@@ -1,8 +1,15 @@
 import { useState } from "react";
+import styled from "styled-components";
 import MealForm from "./components/MealForm";
 import MealsList from "./components/MealsList";
 import ShoppingList from "./components/ShoppingList";
-import Button from "./UI/Button";
+
+const MainWrapper = styled.div`
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 function App() {
   const [mealsList, setMealsList] = useState([]);
@@ -35,41 +42,24 @@ function App() {
     event.preventDefault();
     const newMeal = { name: mealName, ingredients: ingredientsFields };
     const newMealList = [...mealsList, newMeal];
-    console.log(newMealList);
     setMealsList(newMealList);
     setMealName("");
     setIngredientsFields([ingredientsFieldsClearState]);
   };
 
   return (
-    <div className='App'>
-      <div className='input_form'>
-        <h3>Here Input Your meal idea and ingredients</h3>
-        <MealForm
-          addMealHandler={addMealHandler}
-          mealName={mealName}
-          handleMealNameChange={handleMealNameChange}
-          ingredientsFields={ingredientsFields}
-          handleIngredientChange={handleIngredientChange}
-          addMoreIngrediets={addMoreIngrediets}
-        />
-      </div>
-      <div className='meals_list'>
-        <h3>If you already have meal added chose from list</h3>
-        <MealsList mealsList={mealsList} />
-      </div>
-      <div className='shopping_list'>
-        <h3>Here you have ready shopping list</h3>
-        <ShoppingList mealsList={mealsList} />
-        <Button
-          onClick={() => {
-            navigator.clipboard.writeText("hello");
-          }}
-        >
-          Copy to clipboard
-        </Button>
-      </div>
-    </div>
+    <MainWrapper>
+      <MealForm
+        addMealHandler={addMealHandler}
+        mealName={mealName}
+        handleMealNameChange={handleMealNameChange}
+        ingredientsFields={ingredientsFields}
+        handleIngredientChange={handleIngredientChange}
+        addMoreIngrediets={addMoreIngrediets}
+      />
+      <MealsList mealsList={mealsList} />
+      <ShoppingList mealsList={mealsList} />
+    </MainWrapper>
   );
 }
 
