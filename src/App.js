@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import MealForm from "./components/MealForm";
 import MealsList from "./components/MealsList";
@@ -12,7 +12,11 @@ const MainWrapper = styled.div`
 `;
 
 function App() {
-  const [mealsList, setMealsList] = useState([]);
+  const [mealsList, setMealsList] = useState(() => {
+    const saved = localStorage.getItem("mealsList");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
   const [mealName, setMealName] = useState("");
   const ingredientsFieldsClearState = {
     name: "",
@@ -46,6 +50,10 @@ function App() {
     setMealName("");
     setIngredientsFields([ingredientsFieldsClearState]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("mealsList", JSON.stringify(mealsList));
+  }, [mealsList]);
 
   return (
     <MainWrapper>
