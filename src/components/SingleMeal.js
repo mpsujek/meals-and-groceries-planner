@@ -1,8 +1,8 @@
 import React from "react";
 
-const SingleMeal = ({ singleMeal }) => {
+const SingleMeal = ({ singleMeal, addToShoppingListHandler }) => {
   return (
-    <li>
+    <li key={singleMeal.id}>
       {singleMeal.name} (ingredients:
       {singleMeal.ingredients.map((ingredient) => {
         return (
@@ -11,7 +11,7 @@ const SingleMeal = ({ singleMeal }) => {
           </span>
         );
       })}
-      )
+      )<button onClick={addToShoppingListHandler}>Add to Shopping List</button>
     </li>
   );
 };

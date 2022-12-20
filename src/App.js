@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import styled from "styled-components";
 import MealForm from "./components/MealForm";
 import MealsList from "./components/MealsList";
 import ShoppingList from "./components/ShoppingList";
-
+import WeekView from "./UI/WeekView";
 const MainWrapper = styled.div`
   padding: 0 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 function App() {
   const [mealsList, setMealsList] = useState(() => {
     const saved = localStorage.getItem("mealsList");
     const initialValue = JSON.parse(saved);
-    return initialValue || "";
+    return initialValue || [];
   });
   const [mealName, setMealName] = useState("");
   const ingredientsFieldsClearState = {
@@ -44,13 +47,19 @@ function App() {
 
   const addMealHandler = (event) => {
     event.preventDefault();
-    const newMeal = { name: mealName, ingredients: ingredientsFields };
+    const newMeal = {
+      id: uuidv4(),
+      name: mealName,
+      ingredients: ingredientsFields,
+    };
     const newMealList = [...mealsList, newMeal];
     setMealsList(newMealList);
     setMealName("");
     setIngredientsFields([ingredientsFieldsClearState]);
   };
-
+  const addToShoppingListHandler = () => {
+    console.log("item, clicked");
+  };
   useEffect(() => {
     localStorage.setItem("mealsList", JSON.stringify(mealsList));
   }, [mealsList]);
@@ -65,8 +74,12 @@ function App() {
         handleIngredientChange={handleIngredientChange}
         addMoreIngrediets={addMoreIngrediets}
       />
-      <MealsList mealsList={mealsList} />
+      <MealsList
+        mealsList={mealsList}
+        addToShoppingListHandler={addToShoppingListHandler}
+      />
       <ShoppingList mealsList={mealsList} />
+      <WeekView />
     </MainWrapper>
   );
 }
