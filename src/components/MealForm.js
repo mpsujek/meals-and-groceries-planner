@@ -1,15 +1,45 @@
-import React from "react";
-import Button from "../UI/Button";
-import { Wrapper } from "../UI/Wrapper";
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+import Button from '../UI/Button';
+import { Wrapper } from '../UI/Wrapper';
 
 const MealForm = ({
-  addMealHandler,
   mealName,
   handleMealNameChange,
   ingredientsFields,
   handleIngredientChange,
   addMoreIngrediets,
+  setMealName,
+  setIngredientsFields,
+  setMealsList,
+  mealsList,
+  ingredientsFieldsClearState,
 }) => {
+  const [enteredMealNameTouched, setEnteredMealNameTouched] = useState(false);
+  const mealNameBlurHanlder = (event) => {
+    setEnteredMealNameTouched(true);
+  };
+  const mealInputIsValid = mealName.trim() !== '';
+  const mealNameInputIsValid = !mealInputIsValid && enteredMealNameTouched;
+
+  const addMealHandler = (event) => {
+    event.preventDefault();
+
+    if (mealNameInputIsValid) {
+      return;
+    }
+    const newMeal = {
+      id: uuidv4(),
+      name: mealName,
+      ingredients: ingredientsFields,
+    };
+
+    const newMealList = [...mealsList, newMeal];
+    setMealsList(newMealList);
+    setMealName('');
+    setIngredientsFields([ingredientsFieldsClearState]);
+  };
   return (
     <Wrapper>
       <h3>Here Input Your meal idea and ingredients</h3>
@@ -23,7 +53,9 @@ const MealForm = ({
             type='text'
             value={mealName}
             onChange={handleMealNameChange}
+            onBlur={mealNameBlurHanlder}
           />
+          {mealNameInputIsValid && <p>Please enter meal name</p>}
         </div>
         {ingredientsFields.map((ingredient, index) => {
           return (

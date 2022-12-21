@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useState, useEffect } from 'react';
 
-import styled from "styled-components";
-import MealForm from "./components/MealForm";
-import MealsList from "./components/MealsList";
-import ShoppingList from "./components/ShoppingList";
-import WeekView from "./UI/WeekView";
+import styled from 'styled-components';
+import MealForm from './components/MealForm';
+import MealsList from './components/MealsList';
+import ShoppingList from './components/ShoppingList';
+import WeekView from './UI/WeekView';
 const MainWrapper = styled.div`
   padding: 0 10px;
   display: flex;
@@ -16,14 +15,14 @@ const MainWrapper = styled.div`
 
 function App() {
   const [mealsList, setMealsList] = useState(() => {
-    const saved = localStorage.getItem("mealsList");
+    const saved = localStorage.getItem('mealsList');
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
-  const [mealName, setMealName] = useState("");
+  const [mealName, setMealName] = useState('');
   const ingredientsFieldsClearState = {
-    name: "",
-    amount: "",
+    name: '',
+    amount: '',
   };
   const [ingredientsFields, setIngredientsFields] = useState([
     ingredientsFieldsClearState,
@@ -31,7 +30,7 @@ function App() {
 
   const addMoreIngrediets = (event) => {
     event.preventDefault();
-    let newfield = { name: "", amount: "" };
+    let newfield = { name: '', amount: '' };
     setIngredientsFields([...ingredientsFields, newfield]);
   };
 
@@ -45,34 +44,27 @@ function App() {
     setMealName(event.target.value);
   };
 
-  const addMealHandler = (event) => {
-    event.preventDefault();
-    const newMeal = {
-      id: uuidv4(),
-      name: mealName,
-      ingredients: ingredientsFields,
-    };
-    const newMealList = [...mealsList, newMeal];
-    setMealsList(newMealList);
-    setMealName("");
-    setIngredientsFields([ingredientsFieldsClearState]);
-  };
   const addToShoppingListHandler = () => {
-    console.log("item, clicked");
+    console.log('item, clicked');
   };
+
   useEffect(() => {
-    localStorage.setItem("mealsList", JSON.stringify(mealsList));
+    localStorage.setItem('mealsList', JSON.stringify(mealsList));
   }, [mealsList]);
 
   return (
     <MainWrapper>
       <MealForm
-        addMealHandler={addMealHandler}
         mealName={mealName}
+        setMealName={setMealName}
+        setMealsList={setMealsList}
+        mealsList={mealsList}
         handleMealNameChange={handleMealNameChange}
         ingredientsFields={ingredientsFields}
         handleIngredientChange={handleIngredientChange}
         addMoreIngrediets={addMoreIngrediets}
+        setIngredientsFields={setIngredientsFields}
+        ingredientsFieldsClearState={ingredientsFieldsClearState}
       />
       <MealsList
         mealsList={mealsList}
