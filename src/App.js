@@ -28,10 +28,10 @@ function App() {
     ingredientsFieldsClearState,
   ]);
 
-  const addMoreIngrediets = (event) => {
+  const addMoreIngredients = (event) => {
     event.preventDefault();
-    let newfield = { name: '', amount: '' };
-    setIngredientsFields([...ingredientsFields, newfield]);
+    let newField = { name: '', amount: '' };
+    setIngredientsFields([...ingredientsFields, newField]);
   };
 
   const handleIngredientChange = (index, event) => {
@@ -62,7 +62,7 @@ function App() {
         handleMealNameChange={handleMealNameChange}
         ingredientsFields={ingredientsFields}
         handleIngredientChange={handleIngredientChange}
-        addMoreIngrediets={addMoreIngrediets}
+        addMoreIngredients={addMoreIngredients}
         setIngredientsFields={setIngredientsFields}
         ingredientsFieldsClearState={ingredientsFieldsClearState}
       />

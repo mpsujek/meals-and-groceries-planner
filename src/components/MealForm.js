@@ -9,7 +9,7 @@ const MealForm = ({
   handleMealNameChange,
   ingredientsFields,
   handleIngredientChange,
-  addMoreIngrediets,
+  addMoreIngredients,
   setMealName,
   setIngredientsFields,
   setMealsList,
@@ -17,7 +17,7 @@ const MealForm = ({
   ingredientsFieldsClearState,
 }) => {
   const [enteredMealNameTouched, setEnteredMealNameTouched] = useState(false);
-  const mealNameBlurHanlder = (event) => {
+  const mealNameBlurHandler = (event) => {
     setEnteredMealNameTouched(true);
   };
   const mealInputIsValid = mealName.trim() !== '';
@@ -53,7 +53,7 @@ const MealForm = ({
             type='text'
             value={mealName}
             onChange={handleMealNameChange}
-            onBlur={mealNameBlurHanlder}
+            onBlur={mealNameBlurHandler}
           />
           {mealNameInputIsValid && <p>Please enter meal name</p>}
         </div>
@@ -82,7 +82,7 @@ const MealForm = ({
                   onChange={(event) => handleIngredientChange(index, event)}
                 />
               </div>
-              <Button onClick={addMoreIngrediets}>Add more</Button>
+              <Button onClick={addMoreIngredients}>Add more</Button>
             </div>
           );
         })}
