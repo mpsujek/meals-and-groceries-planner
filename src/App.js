@@ -44,9 +44,8 @@ function App() {
     setMealName(event.target.value);
   };
 
-  const addToShoppingListHandler = () => {
-    console.log('item, clicked');
-  };
+  // TODO: Add feature that enable share list
+  const addToShoppingListHandler = () => {};
 
   useEffect(() => {
     localStorage.setItem('mealsList', JSON.stringify(mealsList));
