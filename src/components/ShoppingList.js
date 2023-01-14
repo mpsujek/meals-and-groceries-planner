@@ -1,8 +1,8 @@
-import React from "react";
-import Button from "../UI/Button";
-import { Wrapper } from "../UI/Wrapper";
+import React from 'react';
+import Button from '../UI/Button';
+import { Wrapper } from '../UI/Wrapper';
 
-const ShoppingList = ({ mealsList }) => {
+const ShoppingList = ({ mealsList, shoppingList }) => {
   return (
     <Wrapper>
       <h3>Here you have ready shopping list</h3>
@@ -19,9 +19,8 @@ const ShoppingList = ({ mealsList }) => {
       </ul>
       <Button
         onClick={() => {
-          navigator.clipboard.writeText("hello");
-        }}
-      >
+          navigator.clipboard.writeText('hello');
+        }}>
         Copy to clipboard
       </Button>
     </Wrapper>

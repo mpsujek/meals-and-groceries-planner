@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const SingleMeal = ({ singleMeal, addToShoppingListHandler }) => {
   return (
@@ -11,7 +11,10 @@ const SingleMeal = ({ singleMeal, addToShoppingListHandler }) => {
           </span>
         );
       })}
-      )<button onClick={addToShoppingListHandler}>Add to Shopping List</button>
+      )
+      <button onClick={addToShoppingListHandler(singleMeal.ingredients)}>
+        Add to Shopping List
+      </button>
     </li>
   );
 };

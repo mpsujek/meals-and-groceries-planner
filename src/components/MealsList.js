@@ -1,8 +1,9 @@
-import React from "react";
-import { Wrapper } from "../UI/Wrapper";
-import SingleMeal from "./SingleMeal";
+import React from 'react';
+import { Wrapper } from '../UI/Wrapper';
+import SingleMeal from './SingleMeal';
 
 const MealsList = ({ mealsList, addToShoppingListHandler }) => {
+  console.log(mealsList);
   return (
     <Wrapper>
       <h3>If you already have meal added chose from list</h3>
@@ -10,6 +11,7 @@ const MealsList = ({ mealsList, addToShoppingListHandler }) => {
         {mealsList.map((singleMeal) => {
           return (
             <SingleMeal
+              key={singleMeal.id}
               singleMeal={singleMeal}
               addToShoppingListHandler={addToShoppingListHandler}
             />

@@ -28,6 +28,8 @@ function App() {
     ingredientsFieldsClearState,
   ]);
 
+  const [shoppingList, setShoppingList] = useState([]);
+
   const addMoreIngredients = (event) => {
     event.preventDefault();
     let newField = { name: '', amount: '' };
@@ -69,7 +71,7 @@ function App() {
         mealsList={mealsList}
         addToShoppingListHandler={addToShoppingListHandler}
       />
-      <ShoppingList mealsList={mealsList} />
+      <ShoppingList mealsList={mealsList} shoppingList={shoppingList} />
       <WeekView />
     </MainWrapper>
   );
