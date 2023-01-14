@@ -3,7 +3,6 @@ import { Wrapper } from '../UI/Wrapper';
 import SingleMeal from './SingleMeal';
 
 const MealsList = ({ mealsList, addToShoppingListHandler }) => {
-  console.log(mealsList);
   return (
     <Wrapper>
       <h3>If you already have meal added chose from list</h3>
