@@ -36,6 +36,9 @@ function App() {
     setIngredientsFields([...ingredientsFields, newField]);
   };
 
+  // TODO: Add option of remove element
+  const removeIngredient = (event) => {};
+
   const handleIngredientChange = (index, event) => {
     let data = [...ingredientsFields];
     data[index][event.target.name] = event.target.value;
@@ -64,6 +67,7 @@ function App() {
         ingredientsFields={ingredientsFields}
         handleIngredientChange={handleIngredientChange}
         addMoreIngredients={addMoreIngredients}
+        removeIngredient={removeIngredient}
         setIngredientsFields={setIngredientsFields}
         ingredientsFieldsClearState={ingredientsFieldsClearState}
       />

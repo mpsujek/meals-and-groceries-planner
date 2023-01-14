@@ -10,6 +10,7 @@ const MealForm = ({
   ingredientsFields,
   handleIngredientChange,
   addMoreIngredients,
+  removeIngredient,
   setMealName,
   setIngredientsFields,
   setMealsList,
@@ -83,6 +84,7 @@ const MealForm = ({
                 />
               </div>
               <Button onClick={addMoreIngredients}>Add more</Button>
+              <Button onClick={removeIngredient}>Remove Ingredient</Button>
             </div>
           );
         })}
