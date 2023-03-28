@@ -1,24 +1,18 @@
 import React from 'react';
-import { Wrapper } from '../UI/Wrapper';
-import SingleMeal from './SingleMeal';
 
-const MealsList = ({ mealsList, addToShoppingListHandler }) => {
+const MealList = ({ meals, handleMealClick }) => {
   return (
-    <Wrapper>
-      <h3>If you already have meal added chose from list</h3>
+    <div>
+      <h2>Saved Meals</h2>
       <ul>
-        {mealsList.map((singleMeal) => {
-          return (
-            <SingleMeal
-              key={singleMeal.id}
-              singleMeal={singleMeal}
-              addToShoppingListHandler={addToShoppingListHandler}
-            />
-          );
-        })}
+        {meals.map((meal, index) => (
+          <li key={index}>
+            <button onClick={() => handleMealClick(meal)}>{meal.meal}</button>
+          </li>
+        ))}
       </ul>
-    </Wrapper>
+    </div>
   );
 };
 
-export default MealsList;
+export default MealList;
